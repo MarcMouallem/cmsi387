@@ -1,0 +1,13 @@
+[marc@marc ~]$ ls
+blar  Desktop  Documents  Downloads  hello.sh  Music  Pictures  Public  search  
+		Templates  Videos
+[marc@marc ~]$ cd /
+[marc@marc /]$ ls
+bin  boot  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  
+		run  sbin  srv  sys  tmp  usr  var
+[marc@marc /]$ cd media/
+[marc@marc media]$ ls -i
+   1 98B4-BE07  1856 Ubuntu 11.04 i386     <-- mount points for flash drive and cd
+[marc@marc media]$ 
+
+----- JD: You happened to know where to go for mounted volumes.  But this could really have been any other directory.  What you want is df, which lists mounted devices regardless of where they are.

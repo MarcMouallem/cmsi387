@@ -1,0 +1,42 @@
+I typed <ssh mmoualle@my.cs.lmu.edu> to ssh into my account, followed by
+<ps -o user,uid,pid,comm -e | grep -v "^root" | grep -v "^mmoualle" > p1#4.txt>
+to get the text below. As you can see: deamon, statd, syslog, 106, daemon, ntp,
+masao, www-data, ejaso, www-data, dhara, and tnichol4 are have processes
+running.
+
+USER       UID   PID COMMAND
+daemon       1   593 portmap
+statd      104   635 rpc.statd
+syslog     101   726 rsyslogd
+106        106   733 dbus-daemon
+daemon       1   824 atd
+ntp        105  1216 ntpd
+masao     1009  1383 sshd
+masao     1009  1384 bash
+masao     1009  2220 sshd
+masao     1009  2221 bash
+www-data    33  2857 apache2
+ejaso     1113  8603 sshd
+ejaso     1113  8604 bash
+www-data    33  8648 apache2
+ejaso     1113  9596 sort
+www-data    33 11139 apache2
+www-data    33 11145 apache2
+masao     1009 15828 sshd
+masao     1009 15829 bash
+dhara     1025 16872 node
+masao     1009 17548 sshd
+masao     1009 17549 bash
+www-data    33 18281 apache2
+www-data    33 18286 apache2
+www-data    33 18914 apache2
+tnichol4  1116 19572 su
+tnichol4  1116 19583 bash
+www-data    33 19813 apache2
+www-data    33 22457 apache2
+www-data    33 24049 apache2
+masao     1009 26186 sshd
+masao     1009 26187 bash
+
+----- JD: Nicely done!  Piping through sort would group the users together, too.
+

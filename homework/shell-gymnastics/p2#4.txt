@@ -1,0 +1,52 @@
+mmoualle@linux104:~$ touch myFile
+
+mmoualle@linux104:~$ ls -i
+22153337 27a.js    26476783 cmsi371  22152355 Desktop    22152356 Downloads  
+22154386 p2#3.txt     24516768 repos  22152357 Templates  25953003 workspaces
+22154327 blar.txt  24907012 cmsi387  22152359 Documents  22154356 myFile     
+22152095 public_html  22154313 sd.js  25952347 workspace
+
+The text below includes my commands to creat, move around, and ls -i myFile.
+In responce to part two of the question I could filter out the excess lines by
+typing <ls -li | grep "myFile>.
+
+mmoualle@linux104:~$ mv myFile ~/Desktop
+mmoualle@linux104:~$ cd Desktop/
+
+mmoualle@linux104:~/Desktop$ ls -i
+22154202 28b.html                    22154304 blar.java                     
+23335960 Homework #4 (2)    22154144 problemOne.c
+22154377 28b.js                      22154220 blarkaratis                   
+22154356 myFile             22154277 ProblemTen.class
+22154383 28e.html                    22154268 Chrome-Icon.jpg               
+23595457 NOW                22151327 ProblemTen.java
+22154378 28e.js                      22154308 chrome lmu                    
+22153975 p1#3.txt           22154338 Screenshot-1.png
+26477124 assignment0126               3277047 Computer Graphics - CMSI 371  
+22154311 p1#4.txt           22153757 Screenshot-2.png
+22154279 Assignment 0908 Report.pdf  22154266 facebookSS                    
+22154153 problemNine.js     22154371 Screenshot.png
+22154256 Assignment 0922.odt         22154140 FinalExamProblemFive.py       
+22154118 problemNine.py     25823848 untitled folder
+22154292 blar                        22154165 FinalExamProblemTen.py        
+22154151 problemNine.scala
+
+mmoualle@linux104:~/Desktop$ mv myFile /tmp
+mmoualle@linux104:~/Desktop$ ls -i
+22154202 28b.html                    22154304 blar.java                     
+23335960 Homework #4 (2)    22154277 ProblemTen.class
+22154377 28b.js                      22154220 blarkaratis                   
+23595457 NOW                22151327 ProblemTen.java
+22154383 28e.html                    22154268 Chrome-Icon.jpg               
+22153975 p1#3.txt           22154338 Screenshot-1.png
+22154378 28e.js                      22154308 chrome lmu                    
+22154311 p1#4.txt           22153757 Screenshot-2.png
+26477124 assignment0126               3277047 Computer Graphics - CMSI 371  
+22154153 problemNine.js     22154371 Screenshot.png
+22154279 Assignment 0908 Report.pdf  22154266 facebookSS                    
+22154118 problemNine.py     25823848 untitled folder
+22154256 Assignment 0922.odt         22154140 FinalExamProblemFive.py       
+22154151 problemNine.scala  22154292 blar                        
+22154165 FinalExamProblemTen.py   22154144 problemOne.c
+
+----- JD: Uhhhhhh...you didn't list /tmp.

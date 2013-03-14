@@ -1,0 +1,51 @@
+I typed <ls -la > ~/Desktop/p2#3.txt> and got the text
+below. You can see the disk usage of each in the fifth column. If I wanted a to
+get a specific sub directory I would type <ls -la | grep "<name of directory>.
+So <ls -la | grep "Desktop"> would yield:
+drwxr-x---  7 mmoualle mmoualle  4096 2012-02-01 16:10 Desktop.
+
+drwxr-x--x 37 mmoualle mmoualle  4096 2012-02-01 16:43 .
+drwxr-xr-x  8 root     root         0 2012-02-01 16:48 ..
+-rwxr-x---  1 mmoualle mmoualle   248 2012-01-23 18:25 27a.js
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:19 .adobe
+-rwxr-x---  1 mmoualle mmoualle 15926 2012-02-01 16:29 .bash_history
+-rwxr-x---  1 mmoualle mmoualle   220 2010-04-18 19:15 .bash_logout
+-rwxr-x---  1 mmoualle mmoualle  3166 2012-01-31 20:14 .bashrc
+-rwxr-x---  1 mmoualle mmoualle  9537 2012-01-28 17:24 blar.txt
+drwxr-x--- 13 mmoualle mmoualle  4096 2012-02-01 13:45 .cache
+drwxr-x---  4 mmoualle mmoualle  4096 2012-01-26 13:07 cmsi371
+drwxr-xr-x  4 mmoualle mmoualle  4096 2012-01-31 19:43 cmsi387
+drwxr-x--- 15 mmoualle mmoualle  4096 2012-01-12 19:28 .config
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:14 .dbus
+drwxr-x---  7 mmoualle mmoualle  4096 2012-02-01 16:10 Desktop
+-rw-r--r--  1 mmoualle mmoualle    41 2012-02-01 13:45 .dmrc
+drwxr-x---  4 mmoualle mmoualle  4096 2012-01-20 13:01 Documents
+drwxr-x---  5 mmoualle mmoualle  4096 2012-01-26 17:10 Downloads
+drwxr-x---  3 mmoualle mmoualle  4096 2012-01-20 12:03 .eclipse
+-rwxr-x---  1 mmoualle mmoualle    16 2011-09-13 17:14 .esd_auth
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:15 .evolution
+drwxr-x---  4 mmoualle mmoualle  4096 2012-02-01 13:45 .gconf
+drwxr-x---  2 mmoualle mmoualle  4096 2012-02-01 14:16 .gconfd
+-rwxr-x---  1 mmoualle mmoualle    60 2012-01-23 17:48 .gitconfig
+drwxr-x---  9 mmoualle mmoualle  4096 2012-01-31 20:20 .gnome2
+drwxr-x---  2 mmoualle mmoualle  4096 2011-09-13 17:14 .gnome2_private
+drwxr-x---  2 mmoualle mmoualle  4096 2012-01-30 17:20 .gstreamer-0.10
+-rw-r--r--  1 mmoualle mmoualle   172 2012-02-01 13:45 .gtk-bookmarks
+drwxr-x---  2 mmoualle mmoualle  4096 2011-09-13 17:14 .gvfs
+-rwxr-x---  1 mmoualle mmoualle 22892 2012-02-01 13:45 .ICEauthority
+drwxr-x---  2 mmoualle mmoualle  4096 2011-10-11 19:55 .icons
+drwxr-x---  3 mmoualle mmoualle  4096 2012-01-20 13:02 .java
+-rw-------  1 mmoualle mmoualle   132 2012-01-31 20:12 .lesshst
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:14 .local
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:19 .macromedia
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-13 17:14 .mission-control
+drwxr-x---  5 mmoualle mmoualle  4096 2012-01-20 12:04 .mozilla
+drwxr-x---  2 mmoualle mmoualle  4096 2011-09-13 17:14 .nautilus
+drwxr-x---  3 mmoualle mmoualle  4096 2011-11-28 15:36 .openoffice.org
+-rw-r--r--  1 mmoualle mmoualle     0 2012-02-01 16:43 p2#3.txt
+drwxr-x---  3 mmoualle mmoualle  4096 2011-09-27 10:50 .pki
+-rwxr-x---  1 mmoualle mmoualle   675 2010-04-18 19:15 .profile
+drwxr-xr-x  4 mmoualle mmoualle  4096 2011-12-16 13:54 public_html
+drwx------  2 mmoualle mmoualle 12288 2012-02-01 13:45 .pulse
+
+----- JD: Note that, for directories, that number is not the true disk usage.  There is another command that I was hoping you would use.
