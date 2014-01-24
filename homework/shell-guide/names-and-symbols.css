@@ -1,0 +1,7 @@
+body { 
+    padding-top: 70px; // prevents fixed navbar from overlaping body
+}
+
+.container {
+    padding-bottom: 100px;
+}

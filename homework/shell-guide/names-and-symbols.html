@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        
+        <title>Bash Tutorial</title>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
+        <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="command-crib-sheet.css">
+        
+    </head>
+    
+    <body>
+        
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        </nav>
+        
+        <div class="container">
+            
+            <div class="page-header">
+                <h1>Special Names & Symbols</h1>
+            </div>
+            
+            <p class="lead">
+                The bash command-line shell attaches special meanings to certain names and symbols. Here is a list of
+                a few. For the future complete documentation I might want to consider categorizing these.
+            </p>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.</code></td>
+                        <td>Short hand for the path of the current directory.</td>
+                    </tr>
+                    <tr>
+                        <td><code>.</code></td>
+                        <td>Precedes a filename, like so <code>.my-file</code>, to indicate the file is hidden.</td>
+                    </tr>
+                    <tr>
+                        <td><code>~</code></td>
+                        <td>Shorthand for the path to the user’s home directory.</td>
+                    </tr>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Separates directory names in a path.</td>
+                    </tr>
+                    <tr>
+                        <td><code>\</code></td>
+                        <td>Escape character, used to escape meanings of special characters. Commonly used to escape spaces.</td>
+                    </tr>
+                    <tr>
+                        <td><code>.bash_profile</code></td>
+                        <td>A bash file, executed upon oping a login shell,  that configures the terminal to certain user preferences.</td>
+                    </tr>
+                    <tr>
+                        <td><code>$</code></td>
+                        <td>
+                            Symbol used to prefix variable, as so <code>$PATH</code>, indicating the value of the
+                            variable is meant, not the literal string.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>PATH</code></td>
+                        <td>Environmental variable that hold possible paths for commands entered without their full path.</td>
+                    </tr>
+                    <tr>
+                        <td><code>SHELL</code></td>
+                        <td>Environmental variable which holds path of Bash application.</td>
+                    </tr>
+                    <tr>
+                        <td><code>TERM</code></td>
+                        <td>I actually don't know this one.</td>
+                    </tr>
+                    <tr>
+                        <td><code>USER</code></td>
+                        <td>Environmental variable which holds the user name of the current user.</td>
+                    </tr>
+                    <tr>
+                        <td><code>HOME</code></td>
+                        <td>Environmental variable which holds the path to the current user's home directory.</td>
+                    </tr>
+                    <tr>
+                        <td><code>LANG</code></td>
+                        <td>Environmental variable that holds the current language and character encoding.</td>
+                    </tr>
+                </tbody>     
+            </table>
+            
+            <p class="lead">I could do this all day .. but I would rather not.</p>
+            
+        </div>
+        
+    </body>
+    
+</html>
