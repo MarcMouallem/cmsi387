@@ -1,3 +1,9 @@
 body { 
     padding-top: 70px; // prevents fixed navbar from overlaping body
 }
+
+.command-description {
+    display: inline;
+    padding: 0px;
+    
+}
