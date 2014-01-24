@@ -39,8 +39,8 @@
             </p>
             
             <p class="lead">
-                In addition, there is no scene of navigating the cursor in a terminal. For that reason the terminal is
-                already ready to accept the users next command. This is what makes the command line so efficient.
+                In addition, there is no sense of navigating the cursor in a terminal. For that reason the terminal is
+                always ready to accept the users next command. This is what makes the command line so efficient.
             </p>
             
             <div class="page-header">
@@ -77,14 +77,85 @@
                         <td>Create a new directory named <em>my-directory</em> in the current directory.</td>
                     </tr>
                     <tr>
+                        <td>Delete directory</td>
+                        <td><code>rmdir my-directory</code></td>
+                        <td>Deleted directory named <em>my-directory</em> in the current directory.</td>
+                    </tr>
+                    <tr>
                         <td>Read file</td>
                         <td><code>cat my-file.txt</code></td>
-                        <td>Short for concatenate, prints content of file named <em>my-file.txt</em> to the console.</td>
+                        <td>
+                            Short for concatenate, prints content of file named <em>my-file.txt</em> to the console.
+                        </td>
                     </tr>
                     <tr>
                         <td>Create file</td>
                         <td><code>touch my-file.txt</code></td>
                         <td>Creates file named <em>my-file.txt</em> in current directory.</td>
+                    </tr>
+                    <tr>
+                        <td>Delete file</td>
+                        <td><code>rm my-file.txt</code></td>
+                        <td>Deletes file named <em>my-file.txt</em> in current directory.</td>
+                    </tr>
+                    <tr>
+                        <td>Copy</td>
+                        <td><code>cp my-file.txt nested-directory</code></td>
+                        <td>
+                            Copies file named <em>my-file.txt</em> into directory named <em>nested-directory</em>. Can 
+                            be used with files or directories.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Move</td>
+                        <td><code>mv my-file.txt nested-directory</code></td>
+                        <td>
+                            Moves file named <em>my-file.txt</em> into directory named <em>nested-directory</em>. Can 
+                            be used with files or directories.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rename</td>
+                        <td><code>mv my-file.txt her-file.txt</code></td>
+                        <td>
+                            Renames file named <em>my-file.txt</em> to <em>her-file.txt</em> by moving 
+                            <em>my-file.txt</em> to the current directory with a different name. Can be used with files
+                            or directories.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>List as tree</td>
+                        <td><code>tree</code></td>
+                        <td>
+                            List all the files and directories and their nested files and directories in a tree like 
+                            structure.
+                        </td>
+                    </tr>
+                </tbody>     
+            </table>
+            
+            <div class="page-header">
+                <h2>Section II <small>...</small></h2>
+            </div>
+            
+            <p class="lead">
+                The commands in bash are endless. In the future I plan to expand this page to a complete modern
+                documentation of the Linux command shell. This might be a cool open source project.
+            </p>
+            
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Basic Invocation</th>
+                        <th>Explanation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>...</td>
+                        <td><code>...</code></td>
+                        <td>...</td>
                     </tr>
                 </tbody>     
             </table>
