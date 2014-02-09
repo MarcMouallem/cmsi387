@@ -3,10 +3,11 @@
 <html lang="en">
     
     <head>
-        <title>TODO supply a title</title>
+        <title>CSI: OS</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="csi-os.css">
     </head>
     
     <body>
@@ -42,11 +43,11 @@
                 </div>
                 
                 <div>
-                    
                     <h3>Windows</h3>
-                    
-
-                    
+                    <p>Windows boot files shown below.</p>
+                    <img src="images/windows-boot-files-screenshot.png" 
+                         alt="windows boot files screenshot" 
+                         class="img-rounded">
                 </div>
                                 
             </div>
@@ -74,11 +75,11 @@
                 </div>
                 
                 <div>
-                    
                     <h3>Windows</h3>
-                    
-
-                    
+                    <p>Windows kernal files shown below.</p>
+                    <img src="images/windows-kernel-files-screenshot.png" 
+                         alt="windows kernel files screenshot" 
+                         class="img-rounded">
                 </div>
                                 
             </div>
@@ -127,11 +128,15 @@
                         </footer>
                     </blockquote>
 
-                    <p class="lead"> Here is where you can find the files ...</p>
-                    <img src="images/windows-startup-config.png" alt="windows startup config screenshot" class="img-rounded">
+                    <p> Here is where you can find the files ...</p>
+                    <img src="images/windows-startup-config-files-screenshot.png" 
+                         alt="windows startup config files screenshot" 
+                         class="img-rounded">
 
-                    <p class="lead"> And here is the utility windows provides for manipulating these files</p>
-                    <img src="images/windows-startup-config.png" alt="windows startup config screenshot" class="img-rounded">
+                    <p class="some-top-padding"> And here is the utility windows provides for manipulating these files</p>
+                    <img src="images/windows-registry-editor-screenshot.png" 
+                         alt="windows registry editor screenshot" 
+                         class="img-rounded">
                     
                 </div>
                                 
@@ -163,7 +168,32 @@
                     
                     <h3>Windows</h3>
                     
-
+                    <p>
+                        The first process is a bit vague, but for windows I took that to mean the
+                        <em>Client/Server Runtime Subsystem</em>.
+                    </p>
+                    
+                    <blockquote>
+                        <p>
+                            Client/Server Runtime Subsystem, or csrss.exe, is a component of the Microsoft Windows NT 
+                            operating system that provides the user mode side of the Win32 subsystem and is included in
+                            Windows 2000, Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008, 
+                            Windows 7, and Windows 8. Because most of the Win32 subsystem operations have been moved
+                            to kernel mode drivers, in Windows NT 4 and later, CSRSS is mainly responsible for Win32
+                            console handling and GUI shutdown. It is critical to system operation; therefore,
+                            terminating this process will result in system failure.
+                        </p>
+                        <footer>
+                            <cite title="Source Title">
+                                <a href="http://en.wikipedia.org/wiki/Client/Server_Runtime_Subsystem">
+                                    Wikipedia Client/Server Runtime Subsystem
+                                </a>
+                            </cite>
+                        </footer>
+                    </blockquote>
+                    
+                    <p> Below is a screen shot of the task manager with the csrss process highlighted.</p>
+                    <img src="images/windows-first-process.png" alt="windows first process screenshot" class="img-rounded">
                     
                 </div>
                                 
@@ -192,11 +222,23 @@
                 </div>
                 
                 <div>
-                    
                     <h3>Windows</h3>
-                    
-
-                    
+                    <p>
+                        The network settings for windows are split into two main subsections. The first shown below is
+                        the <em>Network and Sharing Center</em>. This controls networks setting such as sharing
+                        permissions and local network settings.
+                    </p>
+                    <img src="images/windows-network-and-sharing-center.png" 
+                         alt="windows network and sharing center screenshot" 
+                         class="img-rounded">
+                    <p class="some-top-padding">
+                        The second sections is the explorer window showing the physical network adapters. Here we can 
+                        select wifi networks to connect to, or just total disable our adapters. All in all this screen
+                        is where the user will find settings pertaining the the network hardware.
+                    </p>
+                    <img src="images/windows-network-adapters-settings.png" 
+                         alt="windows network adapter settings screenshot" 
+                         class="img-rounded">
                 </div>
                                 
             </div>
