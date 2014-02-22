@@ -3,22 +3,120 @@
 <html lang="en">
     
     <head>
-        <title>CSI: OS</title>
+        <title>Ubuntu Kernel</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="csi-os.css">
+        <link rel="stylesheet" href="ubuntu-kernel-howto.css">
     </head>
     
     <body>
         
         <div class="jumbotron">
             <div class="container">
-                <h1>Assignment 0206 <small>CSI: OS</small></h1>
+                <h1>
+                    Ubuntu 13.10 Kernel 
+                    <br>
+                    <small><em>Building from source and adding system calls</em></small>
+                </h1>
             </div>
         </div>
         
         <div class="container">
+            
+            <p class="lead">
+                 This tutorial will walk you through compiling the Ubuntu 3.10 kernel, Saucy Salamander, from source, 
+                 as well adding your own system call to the kernel. 
+            </p>
+            
+            <div>
+                
+                <div class="page-header">
+                    <h1>Getting Started</h1>
+                </div>
+                <p>
+                    Your going to need a few things set up do accomplish this task.
+                </p>
+                
+                <h3>Download Ubuntu ISO</h3>
+                <p>Download Ubuntu Desktop 13.10. You can find it <a href="http://www.ubuntu.com/download/desktop">here</a>.</p>
+                
+                <h3>Install Virtual Box</h3>
+                <p>
+                    You are going to need to set up a virtual machine. This is probably not something you want to be 
+                    doing on your personal machine.
+                </p>
+                <p>
+                    Virtual box is a great open source software, with plenty of support, for creating virtual machines. You can download it and
+                    find instructions for installing it <a href="https://www.virtualbox.org/">here</a>. Your are going 
+                    too need that ISO you just downloaded to install Ubuntu 13.10 on your virtual machine.If you need
+                    further instructions they should be easy to find on the web, but here are some tips to save you
+                    time and frustration.
+                </p>
+                <div class="bs-callout bs-callout-warning" ng-hide="transactions.length > 0">
+                    <h4>Tip</h4>
+                    <p>
+                        Make sure you have Intel Virtualization Technology, or the equivalent if non Intel mother board, 
+                        enabled in your BIOS. You can usually find it under advanced processor settings.
+                    </p>
+                </div>
+                <div class="bs-callout bs-callout-warning" ng-hide="transactions.length > 0">
+                    <h4>Tip</h4>
+                    <p>
+                        When you finish installing Ubuntu 3.10 on your virtual machine your might notice that the
+                        display will be small and will not encompass the entire window. Virtual Box has an extention
+                        to allow the display to adjust with the window size. Select insert guest additions in the window 
+                        menu named <em>Devices</em>. This should do the trick.
+                    </p>
+                </div>
+                <div class="bs-callout bs-callout-info" ng-hide="transactions.length > 0">
+                    <h4>Suggestion</h4>
+                    <p>
+                        Split your RAM and cores evenly between your virtual machine and your actual machine for best
+                        performance.
+                    </p>
+                </div>
+                <h3>Get Kernel Source Code</h3>
+                <p>
+                    I am going to assume you can install git, safely I hope. You can clone the git repo with the following 
+                    command <code>git clone git://kernel.ubuntu.com/ubuntu/ubuntu-saucy.git</code>. This will take a
+                    while. Do this in your virtual machine you will be working from there.
+                </p>
+            </div>
+            <div>
+                <div class="page-header">
+                    <h1>Compiling the Kernel</h1>
+                </div>
+                <p>
+                    Okay step my step right. So lets start by compiling the kernel as is to make sure everything works
+                    before you mess with the code.
+                </p>
+                <h3>Get The Dependencies</h3>
+                <p>
+                    Compiling the kernel requires some dependencies, you can get them with this command 
+                    <code>sudo apt-get build-dep linux-image-$(uname -r)</code>.
+                </p>
+                <h3>Compiling</h3>
+                <p>
+                    Now that we got everything we need, lets compile. From inside the root directory of the kernel
+                    source type the following command <code>debian/rules clean</code>. When its done cleaning enter
+                    <code>debian/rules binary-headers binary-generic</code>. This will take a while.
+                </p>
+                <figure>
+                    <img src="http://imgs.xkcd.com/comics/compiling.png" alt="Amazing joke you're missing out on." class="img-thumbnail">
+                    <figcaption>XKCD <a href="http://xkcd.com/303/">http://xkcd.com/303/</a></figcaption>
+                </figure>
+                <div class="bs-callout bs-callout-info" ng-hide="transactions.length > 0">
+                    <h4>Suggestion</h4>
+                    <p>
+                        If you want to speed up this process, power down your virtual machine and temporarily allocate
+                        more cores and RAM to your virtual machine. Not too much though, your physical machine need 
+                        resources too.
+                    </p>
+                </div>
+                <h3>Installing the Kernel</h3>
+            </div>
+            
             
             
         </div>
