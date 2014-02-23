@@ -11,7 +11,6 @@
     </head>
     
     <body>
-        
         <div class="jumbotron">
             <div class="container">
                 <h1>
@@ -21,23 +20,18 @@
                 </h1>
             </div>
         </div>
-        
         <div class="container">
-            
             <p class="lead">
                  This tutorial will walk you through compiling the Ubuntu 3.10 kernel, Saucy Salamander, from source, 
                  as well adding your own system call to the kernel. 
             </p>
-            
             <div>
-                
                 <div class="page-header">
                     <h1>Getting Started</h1>
                 </div>
                 <p>
                     Your going to need a few things set up do accomplish this task.
                 </p>
-                
                 <h3>Download Ubuntu ISO</h3>
                 <p>Download Ubuntu Desktop 13.10. You can find it <a href="http://www.ubuntu.com/download/desktop">here</a>.</p>
                 
@@ -56,14 +50,14 @@
                 <div class="bs-callout bs-callout-warning" ng-hide="transactions.length > 0">
                     <h4>Tip</h4>
                     <p>
-                        Make sure you have Intel Virtualization Technology, or the equivalent if non Intel mother board, 
+                        Make sure you have Intel Virtualization Technology, or the equivalent if non Intel motherboard, 
                         enabled in your BIOS. You can usually find it under advanced processor settings.
                     </p>
                 </div>
                 <div class="bs-callout bs-callout-warning" ng-hide="transactions.length > 0">
                     <h4>Tip</h4>
                     <p>
-                        When you finish installing Ubuntu 3.10 on your virtual machine your might notice that the
+                        When you finish installing Ubuntu 3.10 on your virtual machine you might notice that the
                         display will be small and will not encompass the entire window. Virtual Box has an extention
                         to allow the display to adjust with the window size. Select insert guest additions in the window 
                         menu named <em>Devices</em>. This should do the trick.
@@ -78,7 +72,7 @@
                 </div>
                 <h3>Get Kernel Source Code</h3>
                 <p>
-                    I am going to assume you can install git, safely I hope. You can clone the git repo with the following 
+                    I am going to assume you can install git. You can clone the git repo with the following 
                     command <code>git clone git://kernel.ubuntu.com/ubuntu/ubuntu-saucy.git</code>. This will take a
                     while. Do this in your virtual machine you will be working from there.
                 </p>
@@ -88,7 +82,7 @@
                     <h1>Compiling the Kernel</h1>
                 </div>
                 <p>
-                    Okay step my step right. So lets start by compiling the kernel as is to make sure everything works
+                    Okay step by step right. So lets start by compiling the kernel as is to make sure everything works
                     before you mess with the code.
                 </p>
                 <h3>Get The Dependencies</h3>
@@ -176,14 +170,13 @@
                     following code into the Gedit window, then close and save.
                 </p>
                 <pre>
-#include<linux/linkage.h>
-#include<linux/kernel.h>
+#include &ltlinux/linkage.h&gt
+#include &ltlinux/kernel.h&gt
 asmlinkage long sys_helloworld()
 {
    printf("%s\n", "Hello World");
    return 0;
-}
-                </pre>
+}</pre>
                 <p>
                     Create a Makefile within the same <code>my-system-call</code> directory.
                 </p>
@@ -312,12 +305,12 @@ ifeq ($(KBUILD_EXTMOD),)
 
 vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
                    $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
-                   $(net-y) $(net-m) $(libs-y) $(libs-m)))                </pre>
+                   $(net-y) $(net-m) $(libs-y) $(libs-m)))</pre>
                 <p>
                     Add the directory <em>my-system-call</em> to the line where <code>core-y</code> is defined. When you
                     are done is should look like this.
                 </p>
-                                <pre>
+                <pre>
 endif
 export mod_sign_cmd
 
@@ -327,12 +320,12 @@ core-y        += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ <strong>my-system
 
 vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
                    $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
-                   $(net-y) $(net-m) $(libs-y) $(libs-m)))                </pre>
+                   $(net-y) $(net-m) $(libs-y) $(libs-m)))</pre>
                 <p>
                     Save and close the file.
                 </p>
                 <p>
-                    You have now added to your system call. Compile the kernel source, if you don't remember how refer 
+                    You have now added your system call. Compile the kernel source, if you don't remember how refer 
                     to the section <em>Compiling the Kernel</em> above.
                 </p>                
             </div>
@@ -340,13 +333,22 @@ vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
                 <div class="page-header">
                     <h1>Testing Your New System Call</h1>
                 </div>
-                
+                <p>
+                    We need to write a C program for testing your new system call. I have written one below.
+                </p>
+                <pre>
+#include &ltunistd.h&gt
+#include &ltsys/syscall.h&gt
+int main() {
+    syscall(314);
+    return 0;
+}</pre>
+                <p>
+                    Compile and run this program. With your new kernel this should now print <em>Hello, world!</em> to
+                    the console.
+                </p>
             </div>
-            
-            
-            
         </div>
-                
     </body>
     
 </html>
