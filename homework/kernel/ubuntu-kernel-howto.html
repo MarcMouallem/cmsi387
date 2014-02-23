@@ -96,7 +96,7 @@
                     Compiling the kernel requires some dependencies, you can get them with this command 
                     <code>sudo apt-get build-dep linux-image-$(uname -r)</code>.
                 </p>
-                <h3>Compiling</h3>
+                <h3>Compile the Kernel</h3>
                 <p>
                     Now that we got everything we need, lets compile. From inside the root directory of the kernel
                     source type the following command <code>debian/rules clean</code>. When its done cleaning enter
@@ -110,11 +110,237 @@
                     <h4>Suggestion</h4>
                     <p>
                         If you want to speed up this process, power down your virtual machine and temporarily allocate
-                        more cores and RAM to your virtual machine. Not too much though, your physical machine need 
+                        more cores and RAM to your virtual machine. Not too much though, your physical machine needs 
                         resources too.
                     </p>
                 </div>
-                <h3>Installing the Kernel</h3>
+                <h3>Install the Kernel</h3>
+                <p>
+                    When the compilation is done you will see five .deb  files in the same level as your source code
+                    root directory. Just type <code>cd ..</code> to move up a directory and get there. You should
+                    see the following files.
+                </p>
+                <ul>
+                    <li><code>linux-headers-3.11.0-18_3.11.0-18.32_all.deb</code></li>
+                    <li><code>linux-headers-3.11.0-18-generic_3.11.0-18.32_amd64.deb</code></li>
+                    <li><code>linux-image-3.11.0-18-generic_3.11.0-18.32_amd64.deb</code></li>
+                    <li><code>linux-image-extra-3.11.0-18-generic_3.11.0-18.32_amd64.deb</code></li>
+                    <li><code>linux-tools-3.11.0-18-generic_3.11.0-18.32_amd64.deb</code></li>
+                </ul>
+                <p>
+                    Notice that all these files start with <em>linux</em> and have somewhere towards the end 
+                    <em>3.11.0-18.32</em>. So we can install all these .deb files with a single command
+                    using the power of regular expressions. Enter the following command.
+                </p>
+                <p><code>sudo dpkg -i linux*3.11.0-18.32*.deb</code></p>
+                <div class="bs-callout bs-callout-info" ng-hide="transactions.length > 0">
+                    <h4>Info</h4>
+                    <p>
+                        The <code>-i</code> flag is for install.
+                    </p>
+                </div>
+                <p>Reboot your system to apply the changes.</p>
+                <p><code>sudo reboot</code></p>                    
+                <p>Your virtual machine will boot up with your newly compiled kernel!</p>
+            </div>
+            <div>
+                <div class="page-header">
+                    <h1>Adding A System Call</h1>
+                </div>
+                <p>
+                    Now that we are able to compile a kernel from source lets add a system call of our own. This will
+                    take several steps.
+                </p>
+                <h3>Write the System Call</h3>
+                <p>
+                    The first thing you are going to need to do is write the code for your system call. We will need a 
+                    directory to place this in so go ahead and create a directory in the root folder of the kernel
+                    source code.
+                </p>
+                <p>
+                    For the purpose of this tutorial we will call it <code>my-system-call</code>. Create this directory
+                    with the following command.
+                </p>
+                <p>
+                    <code>mkdir my-system-call</code>
+                </p>
+                <p>
+                    Now we will need to create a file with the code. For this tutorial I will use Gedit as my editor.
+                    Create a new file with he follow command.
+                </p>
+                <p>
+                    <code>gedit my-system-call.c</code>
+                </p>
+                <p>
+                    For the purpose of this tutorial we will be writing a Hello World system call. Paste the
+                    following code into the Gedit window, then close and save.
+                </p>
+                <pre>
+#include<linux/linkage.h>
+#include<linux/kernel.h>
+asmlinkage long sys_helloworld()
+{
+   printf("%s\n", "Hello World");
+   return 0;
+}
+                </pre>
+                <p>
+                    Create a Makefile within the same <code>my-system-call</code> directory.
+                </p>
+                <p>
+                    <code>gedit Makefile</code>
+                </p>
+                <p>
+                    Write the following line in your Makefile.
+                </p>
+                <p>
+                    <pre>obj-y := sys_strcpy.o</pre>
+                </p>
+                <p>
+                    Save and close.
+                </p>
+                <h3>Add Your System Call to the System Call Table</h3>
+                <p>
+                    Now that you have written your call, you are going to need to add it to the system call table. 
+                    Navigate to the following directory within your kernel source code.
+                </p>
+                <p>
+                    <code>arch/x86/syscalls/</code>
+                </p>
+                <p>
+                    Open the file <em>syscall_64.tbl</em> with gedit.
+                </p>
+                <p>
+                    <code>gedit syscall_64.tbl</code>
+                </p>
+                <p>
+                    Scroll down till you find the following lines.
+                </p>
+                <pre>
+306    common    syncfs               sys_syncfs
+307    64        sendmmsg             sys_sendmmsg
+308    common    setns                sys_setns
+309    common    getcpu               sys_getcpu
+310    64        process_vm_readv     sys_process_vm_readv
+311    64        process_vm_writev    sys_process_vm_writev
+312    common    kcmp                 sys_kcmp
+313    common    finit_module         sys_finit_module</pre>
+                <p>
+                    Append your system call.
+                </p>
+                <pre>
+306    common    syncfs               sys_syncfs
+307    64        sendmmsg             sys_sendmmsg
+308    common    setns                sys_setns
+309    common    getcpu               sys_getcpu
+310    64        process_vm_readv     sys_process_vm_readv
+311    64        process_vm_writev    sys_process_vm_writev
+312    common    kcmp                 sys_kcmp
+313    common    finit_module         sys_finit_module       
+<strong>314    64        sys_helloworld       sys_helloworld</strong></pre>
+                <p>
+                    Save and close the file.
+                </p>
+                <h3>Add the Function to the System Calls Header File</h3>
+                <p>
+                    Navigate to the following directory within your kernel source code.
+                </p>
+                <p>
+                    <code>include/linux/</code>
+                </p>
+                <p>
+                    Open the file <em>syscalls.hl</em> with gedit.
+                </p>
+                <p>
+                    <code>gedit syscalls.h</code>
+                </p>
+                <p>Navigate to the end of the file. Should look something like this.</p>
+                <pre>
+asmlinkage long sys_process_vm_writev(pid_t pid,
+                                      const struct iovec __user *lvec,
+                                      unsigned long liovcnt,
+                                      const struct iovec __user *rvec,
+                                      unsigned long riovcnt,
+                                      unsigned long flags);
+
+asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+                         unsigned long idx1, unsigned long idx2);
+asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
+#endif</pre>
+                <p>
+                    Add the following line of Code just before the <code>#endif</code>.
+                </p>
+                <p>
+                    <code>asmlinkage  long sys_helloworld();</code>
+                </p>
+                <p>
+                    When your done it should look as follows.
+                </p>
+                <pre>
+asmlinkage long sys_process_vm_writev(pid_t pid,
+                                      const struct iovec __user *lvec,
+                                      unsigned long liovcnt,
+                                      const struct iovec __user *rvec,
+                                      unsigned long riovcnt,
+                                      unsigned long flags);
+
+asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+                         unsigned long idx1, unsigned long idx2);
+asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
+<strong>asmlinkage long sys_helloworld();</strong>
+#endif</pre>
+                <p>
+                    Save and close the file.
+                </p>
+                <h3>Add your Makefile to the Root Makefile</h3>
+                <p>
+                    Navigate to the root of the kernel source code, and open the root Makefile with gedit.
+                </p>
+                <p>
+                    <code>gedit Makefile</code>
+                </p>
+                <p>
+                    Find the line where <code>core-y</code> is defined. You're looking for the following.
+                </p>
+                <pre>
+endif
+export mod_sign_cmd
+
+
+ifeq ($(KBUILD_EXTMOD),)
+<strong>core-y        += kernel/ mm/ fs/ ipc/ security/ crypto/ block/</strong>
+
+vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
+                   $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
+                   $(net-y) $(net-m) $(libs-y) $(libs-m)))                </pre>
+                <p>
+                    Add the directory <em>my-system-call</em> to the line where <code>core-y</code> is defined. When you
+                    are done is should look like this.
+                </p>
+                                <pre>
+endif
+export mod_sign_cmd
+
+
+ifeq ($(KBUILD_EXTMOD),)
+core-y        += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ <strong>my-system-call/</strong>
+
+vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
+                   $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
+                   $(net-y) $(net-m) $(libs-y) $(libs-m)))                </pre>
+                <p>
+                    Save and close the file.
+                </p>
+                <p>
+                    You have now added to your system call. Compile the kernel source, if you don't remember how refer 
+                    to the section <em>Compiling the Kernel</em> above.
+                </p>                
+            </div>
+            <div>
+                <div class="page-header">
+                    <h1>Testing Your New System Call</h1>
+                </div>
+                
             </div>
             
             
