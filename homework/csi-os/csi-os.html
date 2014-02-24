@@ -26,6 +26,10 @@
                     <h1>Section I <small>Pre-OS Software</small></h1>
                 </div>
 
+                <blockquote>
+                  JD: For pre-OS software, I was expecting the software in action, and not just their files.  With these files being on the boot drive, you aren't guaranteed that the true pre-OS software that runs really is loaded from the files that you see.
+                </blockquote>
+
                 <div>
                     
                     <h3>Mac OS X</h3>
@@ -51,7 +55,7 @@
             <div>
             
                 <div class="page-header">
-                    <h1>Section II <small>Kernal File(s)</small></h1>
+                    <h1>Section II <small>Kernel File(s)</small></h1>
                 </div>
 
                 <div>
@@ -65,12 +69,18 @@
                 <div>
                     <h3>Ubuntu</h3>
                     <p>Ubuntu kernal files shown below.</p>
+                    <blockquote>
+                      JD: Nope, you are in <code>/usr/src</code> here.  This is the kernel's source code and not the actual kernel that is loaded at boot time.
+                    </blockquote>
                     <img src="images/ubuntu-kernel-files.png" alt="ubuntu kernel files" class="img-rounded">
                 </div>
                 
                 <div>
                     <h3>Windows</h3>
                     <p>Windows kernal files shown below.</p>
+                    <blockquote>
+                      JD: These are libraries that the kernel may use, but not the actual kernel file itself.
+                    </blockquote>
                     <img src="images/windows-kernel-files.png" alt="windows kernel files" class="img-rounded">
                 </div>
                                 
@@ -171,6 +181,9 @@
                         Similarly for windows the <em>first process</em> is <code>wininit.exe</code>. Below is a
                         screenshot of the task manager with the <code>wininit.exe</code> process highlighted.
                     </p>
+                    <blockquote>
+                      JD: If <code>wininit.exe</code> were truly the first process, then why is its process ID 608?  The first true process is the one with the lowest process ID.
+                    </blockquote>
                     <img src="images/windows-first-process.png" alt="windows first process" class="img-rounded">
                 </div>
                                 
