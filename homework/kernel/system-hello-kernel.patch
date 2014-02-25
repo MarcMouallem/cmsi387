@@ -1,0 +1,73 @@
+From 66bf2ef9c39afe0394d909f389fffbd846d8d721 Mon Sep 17 00:00:00 2001
+From: Marc Mouallem <marc.4d@gmail.com>
+Date: Tue, 25 Feb 2014 00:32:07 -0800
+Subject: [PATCH] Added HelloKernel() system call.
+
+---
+ Makefile                          | 2 +-
+ arch/x86/syscalls/syscall_64.tbl  | 1 +
+ hello-kernel/Makefile             | 1 +
+ hello-kernel/system_hellokernel.c | 7 +++++++
+ include/linux/syscalls.h          | 1 +
+ 5 files changed, 11 insertions(+), 1 deletion(-)
+ create mode 100644 hello-kernel/Makefile
+ create mode 100644 hello-kernel/system_hellokernel.c
+
+diff --git a/Makefile b/Makefile
+index 514cab3..4a6b1a7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -743,7 +743,7 @@ export mod_sign_cmd
+ 
+ 
+ ifeq ($(KBUILD_EXTMOD),)
+-core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/
++core-y		+= kernel/ mm/ fs/ ipc/ security/ crypto/ block/ hello-kernel/
+ 
+ vmlinux-dirs	:= $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
+ 		     $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
+diff --git a/arch/x86/syscalls/syscall_64.tbl b/arch/x86/syscalls/syscall_64.tbl
+index 38ae65d..d7c6bca 100644
+--- a/arch/x86/syscalls/syscall_64.tbl
++++ b/arch/x86/syscalls/syscall_64.tbl
+@@ -320,6 +320,7 @@
+ 311	64	process_vm_writev	sys_process_vm_writev
+ 312	common	kcmp			sys_kcmp
+ 313	common	finit_module		sys_finit_module
++314	64		system_hellokernel	system_hellokernel
+ 
+ #
+ # x32-specific system call numbers start at 512 to avoid cache impact
+diff --git a/hello-kernel/Makefile b/hello-kernel/Makefile
+new file mode 100644
+index 0000000..31b2b79
+--- /dev/null
++++ b/hello-kernel/Makefile
+@@ -0,0 +1 @@
++obj-y := system_hellokernel.o
+diff --git a/hello-kernel/system_hellokernel.c b/hello-kernel/system_hellokernel.c
+new file mode 100644
+index 0000000..79ed0c1
+--- /dev/null
++++ b/hello-kernel/system_hellokernel.c
+@@ -0,0 +1,7 @@
++#include <linux/kernel.h>
++#include <linux/linkage.h>
++
++asmlinkage long system_hellokernel(char* name) {
++	printk("%s%s%s\n", "Hello, ", name, "!");
++	return 0;
++}
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 84662ec..13e9aa7 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -846,4 +846,5 @@ asmlinkage long sys_process_vm_writev(pid_t pid,
+ asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+ 			 unsigned long idx1, unsigned long idx2);
+ asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
++asmlinkage long system_hellokernel(char* name);
+ #endif
+-- 
+1.8.3.2
+
