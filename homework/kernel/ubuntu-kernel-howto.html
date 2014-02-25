@@ -156,26 +156,26 @@
                     with the following command.
                 </p>
                 <p>
-                    <code>mkdir my-system-call</code>
+                    <code>mkdir hello-kernel</code>
                 </p>
                 <p>
                     Now we will need to create a file with the code. For this tutorial I will use Gedit as my editor.
                     Create a new file with he follow command.
                 </p>
                 <p>
-                    <code>gedit my-system-call.c</code>
+                    <code>system_hellokernel.c</code>
                 </p>
                 <p>
                     For the purpose of this tutorial we will be writing a Hello World system call. Paste the
                     following code into the Gedit window, then close and save.
                 </p>
                 <pre>
-#include &ltlinux/linkage.h&gt
 #include &ltlinux/kernel.h&gt
-asmlinkage long sys_helloworld()
-{
-   printf("%s\n", "Hello World");
-   return 0;
+#include &ltlinux/linkage.h&gt
+
+asmlinkage long system_hellokernel(char* name) {
+    printk("%s%s%s\n", "Hello, ", name, "!");
+    return 0;
 }</pre>
                 <p>
                     Create a Makefile within the same <code>my-system-call</code> directory.
@@ -187,7 +187,7 @@ asmlinkage long sys_helloworld()
                     Write the following line in your Makefile.
                 </p>
                 <p>
-                    <pre>obj-y := sys_strcpy.o</pre>
+                    <pre>obj-y := system_hellokernel.o</pre>
                 </p>
                 <p>
                     Save and close.
@@ -230,7 +230,7 @@ asmlinkage long sys_helloworld()
 311    64        process_vm_writev    sys_process_vm_writev
 312    common    kcmp                 sys_kcmp
 313    common    finit_module         sys_finit_module       
-<strong>314    64        sys_helloworld       sys_helloworld</strong></pre>
+<strong>314    64        system_hellokernel   system_hellokernel</strong></pre>
                 <p>
                     Save and close the file.
                 </p>
@@ -280,7 +280,7 @@ asmlinkage long sys_process_vm_writev(pid_t pid,
 asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
                          unsigned long idx1, unsigned long idx2);
 asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
-<strong>asmlinkage long sys_helloworld();</strong>
+<strong>asmlinkage long system_hellokernel();</strong>
 #endif</pre>
                 <p>
                     Save and close the file.
@@ -316,7 +316,7 @@ export mod_sign_cmd
 
 
 ifeq ($(KBUILD_EXTMOD),)
-core-y        += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ <strong>my-system-call/</strong>
+core-y        += kernel/ mm/ fs/ ipc/ security/ crypto/ block/ <strong>hello-kernel/</strong>
 
 vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
                    $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
@@ -339,13 +339,15 @@ vmlinux-dirs  := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
                 <pre>
 #include &ltunistd.h&gt
 #include &ltsys/syscall.h&gt
-int main() {
-    syscall(314);
+#include &ltstdio.h&gt
+
+int main(int argc, char *argv[]) {
+    int i = syscall(314, argv[1]);
     return 0;
 }</pre>
                 <p>
-                    Compile and run this program. With your new kernel this should now print <em>Hello, world!</em> to
-                    the console.
+                    Compile and run this program. With your new kernel this should now print <em>Hello, &ltname&gt!</em> to
+                    the system log, found at <code>/var/log/kern.log</code>.
                 </p>
             </div>
         </div>
