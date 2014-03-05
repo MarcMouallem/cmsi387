@@ -1,0 +1,88 @@
+
+/******************************************************************************
+ * 1: Creat Image
+ ******************************************************************************/
+
+[marcmouallem@localhost temp]$ dd if=/dev/zero of=image count=1024
+1024+0 records in
+1024+0 records out
+524288 bytes (524 kB) copied, 0.00201697 s, 260 MB/s
+
+/******************************************************************************
+ * 2: Format Image
+ ******************************************************************************/
+
+[marcmouallem@localhost temp]$ mke2fs image 
+mke2fs 1.42.8 (20-Jun-2013)
+image is not a block special device.
+Proceed anyway? (y,n) y
+Discarding device blocks: done                            
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+64 inodes, 512 blocks
+25 blocks (4.88%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=524288
+1 block group
+8192 blocks per group, 8192 fragments per group
+64 inodes per group
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done
+
+/******************************************************************************
+ * 3: Mount Image
+ ******************************************************************************/
+
+[marcmouallem@localhost temp]$ sudo mount -o loop -o nosuid -o nodev image ./
+[sudo] password for marcmouallem: 
+[marcmouallem@localhost temp]$ df
+Filesystem              1K-blocks    Used Available Use% Mounted on
+/dev/mapper/fedora-root  51475068 4275328  44561916   9% /
+devtmpfs                  3906524       0   3906524   0% /dev
+tmpfs                     3914200    3608   3910592   1% /dev/shm
+tmpfs                     3914200     988   3913212   1% /run
+tmpfs                     3914200       0   3914200   0% /sys/fs/cgroup
+tmpfs                     3914200     664   3913536   1% /tmp
+/dev/sdb2                  487652   94448    363508  21% /boot
+/dev/sdb1                  204580    9756    194824   5% /boot/efi
+/dev/mapper/fedora-home 180162944 1823800 169164312   2% /home
+/dev/loop0                    499      15       459   4% /home/marcmouallem/Dropbox/temp
+
+/******************************************************************************
+ * 4: Create Items
+ ******************************************************************************/
+
+[marcmouallem@localhost temp]$ sudo vi top-level-file.txt
+[marcmouallem@localhost temp]$ sudo mkdir top-level-directory
+[marcmouallem@localhost temp]$ cd top-level-directory/
+[marcmouallem@localhost top-level-directory]$ sudo vi lower-level-file.txt
+[marcmouallem@localhost top-level-directory]$ sudo ln -s ../top-level-file.txt top-level-file-symbolic-link
+[marcmouallem@localhost top-level-directory]$ cd ..
+[marcmouallem@localhost temp]$ sudo ln top-level-directory/lower-level-file.txt lower-level-file
+
+/******************************************************************************
+ * 5: List Items
+ ******************************************************************************/
+
+[marcmouallem@localhost temp]$ ls -laFi
+total 23
+      2 drwxr-xr-x.  4 root         root          1024 Mar  4 17:39 ./
+2228655 drwx------. 12 marcmouallem marcmouallem  4096 Mar  4 17:42 ../
+     11 drwx------.  2 root         root         12288 Mar  4 15:17 lost+found/
+     15 -rw-r--r--.  2 root         root           212 Mar  4 15:54 lower-level-file
+     13 drwxr-xr-x.  2 root         root          1024 Mar  4 17:38 top-level-directory/
+     12 -rw-r--r--.  1 root         root           212 Mar  4 15:50 top-level-file.txt
+
+[marcmouallem@localhost temp]$ cd top-level-directory/
+[marcmouallem@localhost top-level-directory]$ ls -laFi
+total 6
+13 drwxr-xr-x. 2 root root 1024 Mar  4 17:38 ./
+ 2 drwxr-xr-x. 4 root root 1024 Mar  4 17:39 ../
+15 -rw-r--r--. 2 root root  212 Mar  4 15:54 lower-level-file.txt
+14 lrwxrwxrwx. 1 root root   21 Mar  4 17:37 top-level-file -> ../top-level-file.txt
+
