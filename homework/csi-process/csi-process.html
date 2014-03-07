@@ -23,44 +23,57 @@
         </div>
         
         <div class="container">
-            
             <div>
                 <div class="page-header">
                     <h1>Section I <small>Invoke Process Using Fork and Monitor</small></h1>
                 </div>
                 <div>
                     <h3>Fedora 20</h3>
-                    <iframe width="560" height="315" src="http://www.youtube.com/embed/D1BnPG2jw1g" frameborder="0" allowfullscreen></iframe>                </div>
+                    <iframe width="560" height="315" src="http://www.youtube.com/embed/D1BnPG2jw1g" frameborder="0" allowfullscreen></iframe>
+                    <p>Raise the quality to 720p or higher to make the text more readable.</p>
+                </div>
                 <div>
-                    <h3>Windows 8</h3>
-                    
+                    <h3>OS X</h3>
+                    <iframe width="420" height="315" src="http://www.youtube.com/embed/w5AcTKEvDZQ" frameborder="0" allowfullscreen></iframe>
+                    <p>Sorry, just realized screen video capture really glitches out on retina monitors. But you can still see what I was doing.</p>
                 </div>
             </div>
-            
             <div>
-                
                 <div class="page-header">
                     <h1>Section II <small>Compare Operating System Diffrences</small></h1>
                 </div>
-                
-                <div>
-                    
-                    <h3>Fedora 20</h3>
-                    
-                    
-                    
-                </div>
-                
-                <div>
-                    
-                    <h3>Windows 8</h3>
-                    
-                    
-                    
-                </div>
-                
+                <p class="lead">
+                    Both OS X and Fedora 20 have bash so there where a lot of similarities but some key differences.
+                </p>
+                <h3>Similarities</h3>
+                <ul>
+                    <li>
+                        <strong>Same command to fork the process <code>(<em>command</em> > <em>output-file.log</em>) &</code></strong>
+                    </li>
+                    <li>
+                        Both used <code>java</code> to run and <code>javac</code> to compile Java programs.
+                    </li>
+                    <li>
+                        Both support log files natively.
+                    </li>
+                </ul>
+                <h3>Differences</h3>
+                <ul>
+                    <li>
+                        <strong>Different flag on <code>ps</code> command.</strong> OS X uses <code>ps -M</code> to show process and 
+                        their threads, while Fedora 20 uses <code>ps -m</code>. <em>Note the lower case "m".</em>
+                    </li>
+                    <li>
+                        <strong>Threads are printed differently.</strong> While Fedora 20 used a "-" in places of repeating
+                        the process ID for each thread of a process, OS X list the Process ID for each thread
+                        repeatedly. Kind of messy and less clean.
+                    </li>
+                    <li>
+                        Mac does not have shortcuts to cycle through previous commands starting with the letters the
+                        user started typing. It depends on the reverse search tool in bash which is clunky.
+                    </li>
+                </ul>
             </div>
-            
         </div>
                 
     </body>
