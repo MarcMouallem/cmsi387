@@ -1,6 +1,6 @@
 #include "PhilosophicalSecession.h"
 
-sem_t PhilosophicalSecession::leftChopstick(int position) {
+sem_t PhilosophicalSecession::getLeftChopstick(int position) {
     int leftPhilosopher = position - 1;
     if (leftPhilosopher < 0) {
         leftPhilosopher += numberOfphilosophers;
@@ -8,7 +8,7 @@ sem_t PhilosophicalSecession::leftChopstick(int position) {
     return chopsticks[leftPhilosopher];
 }
 
-sem_t PhilosophicalSecession::rightChopstick(int position) {
+sem_t PhilosophicalSecession::getRightChopstick(int position) {
     return chopsticks[position];
 }
     
@@ -25,9 +25,9 @@ PhilosophicalSecession::PhilosophicalSecession(int numberOfphilosophers) {
     }
     int lastPhilosopher = numberOfphilosophers - 1;
     for (int index = 0; index < lastPhilosopher; index++) {
-        philosophers[index].init(index, leftChopstick(index), rightChopstick(index));
+        philosophers[index].init(index, getLeftChopstick(index), getRightChopstick(index));
     }
-    philosophers[lastPhilosopher].init(lastPhilosopher, rightChopstick(lastPhilosopher), leftChopstick(lastPhilosopher));
+    philosophers[lastPhilosopher].init(lastPhilosopher, getRightChopstick(lastPhilosopher), getLeftChopstick(lastPhilosopher));
     pthread_join(philosophers[lastPhilosopher].getLife(), NULL);
     
 }

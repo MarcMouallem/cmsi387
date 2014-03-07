@@ -17,8 +17,8 @@ class PhilosophicalSecession {
         sem_t* chopsticks;
         Philosopher* philosophers;
         
-        sem_t leftChopstick(int position);
-        sem_t rightChopstick(int position);
+        sem_t getLeftChopstick(int position);
+        sem_t getRightChopstick(int position);
 
     public:              
         PhilosophicalSecession(int numberOfphilosophers);
