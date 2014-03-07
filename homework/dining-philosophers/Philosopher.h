@@ -2,6 +2,7 @@
 
 #define _Philosopher_
 
+#include <cstdlib>
 #include <iostream>
 #include <cstdio>
 #include <semaphore.h>
@@ -20,6 +21,7 @@ class Philosopher {
         static void* birth(void* arg);
         void think();
         void eat();
+        void randomBlock();
 
     public :
         void init(int philosopherId, sem_t chopstickAcquiredFirst, sem_t chopstickAcquiredSecond);

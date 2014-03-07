@@ -10,8 +10,7 @@ void* Philosopher::birth(void* arg) {
 
 void Philosopher::think() {
     std::cout << std::string("Philosopher ") + philosopherIdString + std::string(" thinking.\n");
-    timespec duration = {5, 0};
-    nanosleep(&duration, 0);
+    randomBlock();
 }
 
 void Philosopher::eat() {
@@ -23,11 +22,10 @@ void Philosopher::eat() {
     sem_wait(&chopstickAcquiredSecond);
 
     std::cout << std::string("Philosopher ") + philosopherIdString + std::string(" eating.\n");
-    timespec duration = {5, 0};
-    nanosleep(&duration, 0);
+    randomBlock();
 
-    sem_close(&chopstickAcquiredSecond);
-    sem_close(&chopstickAcquiredFirst);
+    sem_post(&chopstickAcquiredSecond);
+    sem_post(&chopstickAcquiredFirst);
 
 }
     
@@ -41,6 +39,15 @@ void Philosopher::init(int philosopherId, sem_t chopstickAcquiredFirst, sem_t ch
     pthread_create(&life, 0, &Philosopher::birth, this);
     std::cout << std::string("Philosopher ") + philosopherIdString + std::string(" born!\n");
 
+}
+
+void Philosopher::randomBlock() {
+    int maxSeconds = 3;
+    int seconds = rand() % maxSeconds;
+    int nanosecondsInSecond = 1000000000;
+    long nanoseconds = rand() % nanosecondsInSecond;
+    timespec duration = {seconds, nanoseconds};
+    nanosleep(&duration, 0);
 }
 
 pthread_t Philosopher::getLife() {
