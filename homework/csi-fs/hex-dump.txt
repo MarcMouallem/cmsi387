@@ -1,6 +1,8 @@
 /******************************************************************************
  * Note the image's files' inodes.
  ******************************************************************************/
+# JD: This is fine as a way to confirm things, but make sure you can show me
+#     those inode numbers on the directory entries as well.  We'll see.
 
 [marcmouallem@localhost temp]$ ls -lai
 total 23
@@ -125,6 +127,14 @@ drwxrwxr-x. 11 marcmouallem marcmouallem   4096 Mar  4 15:25 ..
 00003870  6c 6f 77 65 72 2d 6c 65  76 65 6c 2d 66 69 6c 65  |lower-level-file|
 /******************************************************************************
  * Above we can see the names for the file directory and hard link. Cool!
+ *
+ * JD: Yes, that is cool, but how did you find it?  Remember that the computer
+ *     does not read English.  For the operating system to locate this block,
+ *     it relies on something other than "eyeballing" the filenames.
+ *
+ *     Also, what tells you (other than the fact that you created it) that
+ *     lower-level-file is a hard link?  What other portion of this hex dump
+ *     can you point out which provides evidence of this being a link?
  ******************************************************************************/
 00003880  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 *
@@ -185,6 +195,11 @@ drwxrwxr-x. 11 marcmouallem marcmouallem   4096 Mar  4 15:25 ..
 00007460  74 6f 70 2d 6c 65 76 65  6c 2d 66 69 6c 65 00 00  |top-level-file..|
 /******************************************************************************
  * Above we can see for the lower-level-file and  symbolic link. Cool!
+ *
+ * JD: Yes, and again the question remains---how did you know?  If it is
+ *     purely by eyeball then this missed the point of the exercise.
+ *     Note also that the symbolic link is still just the *directory entry*
+ *     for the symbolic link---where is the link itself?
  ******************************************************************************/
 00007470  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 *
@@ -221,6 +236,9 @@ drwxrwxr-x. 11 marcmouallem marcmouallem   4096 Mar  4 15:25 ..
 /******************************************************************************
  * I made the content of the top-level-file.txt all A's so its content was easy
  * to find. Look!
+ *
+ * JD: OK, so the wording if your annotation above very strongly hints that
+ *     you are only doing this by eyeball.  Missed opportunity there.
  ******************************************************************************/
 0000a4e0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 *
@@ -234,6 +252,11 @@ drwxrwxr-x. 11 marcmouallem marcmouallem   4096 Mar  4 15:25 ..
 /******************************************************************************
  * I made the content of the lower-level-file.txt all B's so its content was 
  * easy to find. Look!
+ *
+ * JD: So here, your eyeballing finally betrays you.  That's a whole bunch of
+ *     B's---can you tell me which one of them is the first "B" in the file,
+ *     and why?  Your annotation suggests that the file starts at offset ab88.
+ *     But it doesn't.
  ******************************************************************************/
 0000ace0  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 *

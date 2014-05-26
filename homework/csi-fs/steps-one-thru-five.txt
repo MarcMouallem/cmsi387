@@ -57,6 +57,9 @@ tmpfs                     3914200     664   3913536   1% /tmp
  * 4: Create Items
  ******************************************************************************/
 
+# JD: Why did all of these activities have to be sudo'ed?  There shouldn't have
+#     been permissions issues here.  If you did get them, then you were mounting
+#     onto a directory whose permissions were too strict.
 [marcmouallem@localhost temp]$ sudo vi top-level-file.txt
 [marcmouallem@localhost temp]$ sudo mkdir top-level-directory
 [marcmouallem@localhost temp]$ cd top-level-directory/
